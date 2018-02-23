@@ -16,9 +16,13 @@ getするとuserを取ってきます。
 ](https://hirooka.pro/?p=8895)
 
 ## DEMO
-
-```shell-session
+入力1
+```bash
 $ curl http://localhost:8080/api/users
+```
+
+結果1
+```shell-session
 {
   "_embedded" : {
     "users" : [ {
@@ -54,8 +58,14 @@ $ curl http://localhost:8080/api/users
     }
   }
 }
+```
 
+入力2
+```bash
 $ curl -X POST http://localhost:8080/api/users -d '{"firstName": "Jiro", "lastName": Ohta"}' -H "Content-Type:application/json"
+```
+結果2
+```shell-session
 {
   "firstName" : "Jiro",
   "lastName" : "Ohta",
