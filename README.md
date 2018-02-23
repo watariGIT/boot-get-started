@@ -15,4 +15,57 @@ getするとuserを取ってきます。
 - [Spring Boot の Docker コンテナと MySQL の Docker コンテナの接続
 ](https://hirooka.pro/?p=8895)
 
+## DEMO
 
+```shell-session
+$ curl http://localhost:8080/api/users
+{
+  "_embedded" : {
+    "users" : [ {
+      "firstName" : "Taro",
+      "lastName" : "Yamada",
+      "_links" : {
+        "self" : {
+          "href" : "http://localhost:8080/api/users/1"
+        },
+        "user" : {
+          "href" : "http://localhost:8080/api/users/1"
+        }
+      }
+    }, {
+      "firstName" : "Hanako",
+      "lastName" : "Tanaka",
+      "_links" : {
+        "self" : {
+          "href" : "http://localhost:8080/api/users/2"
+        },
+        "user" : {
+          "href" : "http://localhost:8080/api/users/2"
+        }
+      }
+    } ]
+  },
+  "_links" : {
+    "self" : {
+      "href" : "http://localhost:8080/api/users"
+    },
+    "profile" : {
+      "href" : "http://localhost:8080/api/profile/users"
+    }
+  }
+}
+
+$ curl -X POST http://localhost:8080/api/users -d '{"firstName": "Jiro", "lastName": Ohta"}' -H "Content-Type:application/json"
+{
+  "firstName" : "Jiro",
+  "lastName" : "Ohta",
+  "_links" : {
+    "self" : {
+      "href" : "http://localhost:8080/api/users/3"
+    },
+    "user" : {
+      "href" : "http://localhost:8080/api/users/3"
+    }
+  }
+}
+```
