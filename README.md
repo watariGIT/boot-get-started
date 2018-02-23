@@ -15,6 +15,11 @@ getするとuserを取ってきます。
 - [Spring Boot の Docker コンテナと MySQL の Docker コンテナの接続
 ](https://hirooka.pro/?p=8895)
 
+## 準備
+dockerの実行
+```bash
+$docker-compose up --build
+```
 ## DEMO
 入力1
 ```bash
