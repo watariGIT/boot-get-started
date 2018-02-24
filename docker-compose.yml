@@ -13,12 +13,14 @@ services:
             MYSQL_ROOT_PASSWORD: root
     app:
         build: .
-        image: watari/boot:0.0.2
+        image: watari/boot:0.1.0                            
         depends_on:
             - dbserver
         ports:
             - "8080:8080"
         volumes:
             - .:/app
+        environment:
+            JAR_TARGET: boot-get-started-0.0.1-SNAPSHOT.jar
        
        

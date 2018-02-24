@@ -13,5 +13,8 @@ VOLUME /tmp
 RUN mkdir /app
 WORKDIR /app
 
+# jar target
+ENV JAR_TARGET "boot-get-started-0.0.1-SNAPSHOT.jar"
+
 # set entrypoint to execute spring boot application
-ENTRYPOINT ["java","-jar","-Dspring.profiles.active=docker","build/libs/boot-get-started-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["sh","-c","java -jar -Dspring.profiles.active=docker build/libs/${JAR_TARGET}"]
