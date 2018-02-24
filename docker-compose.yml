@@ -1,16 +1,17 @@
 version: '2'
 services:
+
     dbserver:
         image: mysql
-        ports:
-            - "3306:3306"
         volumes:
             - ./sql:/docker-entrypoint-initdb.d
+            - mysql-db:/var/lib/mysql
         environment:
             MYSQL_DATABASE: mydb
             MYSQL_USER: sboot
             MYSQL_PASSWORD: sboot
             MYSQL_ROOT_PASSWORD: root
+           
     app:
         build: .
         image: watari/boot:0.1.0                            
@@ -22,5 +23,19 @@ services:
             - .:/app
         environment:
             JAR_TARGET: boot-get-started-0.0.1-SNAPSHOT.jar
-       
-       
+
+    myadmin:
+        image: phpmyadmin/phpmyadmin
+        depends_on:
+            - dbserver
+        environment:
+            PMA_ARBITRARY: 1
+            PMA_HOST: dbserver
+            PMA_USER: root
+            PMA_PASSWORD: root
+        ports:
+            - "1111:80"
+
+volumes:
+    mysql-db:
+        driver: local
